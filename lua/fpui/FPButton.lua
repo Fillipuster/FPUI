@@ -1,47 +1,46 @@
-local PANEL = {};
+-- Color(114, 137, 218)
+-- Color(91, 69, 69)
+local PANEL = {}
+
+DEFINE_BASECLASS("DButton")
+
+AccessorFunc(PANEL, "m_paintColor", "Color")
+AccessorFunc(PANEL, "m_disabledColor", "DisabledColor")
 
 function PANEL:Init()
-	self:SetSize(100, 75);
-	self:SetText("");
+	BaseClass.Init(self)
 
-	self.label = "Button";
-	self.font = FPUI.Font(5, false);
+	self:SetFont("Open-Sans24")
+	self:SetText("Button")
+	self:SetTextColor(Color(255, 255, 255))
 end
 
-function PANEL:SetLabel(text)
-	self.label = text;
+function PANEL:SetDisabled(disable)
+	BaseClass.SetDisabled(self, disable)
+
+	self:SetTextColor(disable and Color(200, 200, 200) or Color(255, 255, 255))
 end
 
-function PANEL:SetFont(size, bold)
-	self.font = FPUI.Font(size, bold);
-end
+function PANEL:Paint(width, height)
+	local color = self:GetColor() or Color(114, 137, 218)
 
-function PANEL:Paint(w, h)
-	local col = self.paintColor or Color(114, 137, 218);
-
-	/*
-	local hsvColH, hsvColS, hsvColB = ColorToHSV(col);
-	local downColor = HSVToColor(hsvColH, hsvColS, hsvColB - 0.2);
-	local highlightColor = HSVToColor(hsvColH, hsvColS, hsvColB + 0.2);
-	*/
-
-	local downColor = Color(col.r - 20, col.g - 20, col.b - 20);
-	local highlightColor = Color(col.r + 20, col.g + 20, col.b + 20);
+	local highlightColor = Color(color.r + 25, color.g + 25, color.b + 25)
+	local downColor = Color(color.r - 25, color.g - 25, color.b - 25)
 	
-	if (self.hover) then col = highlightColor; end
-	if (self:IsDown()) then col = downColor; end
-	if (self:GetDisabled()) then col = Color(91, 69, 69); end
+	if (self.Hovered) then color = highlightColor end
+	if (self:IsDown()) then color = downColor end
+	if (self:GetDisabled()) then color = self:GetDisabledColor() or Color(91, 69, 69) end
 
-	draw.RoundedBox(8, 0, 0, w, h, col);
-	draw.SimpleText(self.label, self.font, w / 2, h / 2, Color(255, 255, 255), 1, 1);
+	if (not self:GetDisabled()) then
+		local _, _, brightness = ColorToHSV(color)
+		if (brightness > 0.9) then
+			self:SetTextColor(FPUI.config.baseDark)
+		else
+			self:SetTextColor(Color(255, 255, 255))
+		end
+	end
+
+	draw.RoundedBox(8, 0, 0, width, height, color)
 end
 
-function PANEL:OnCursorEntered()
-	self.hover = true;
-end
-
-function PANEL:OnCursorExited()
-	self.hover = false;
-end
-
-vgui.Register("FPButton", PANEL, "DButton");
+vgui.Register("FPButton", PANEL, "DButton")
