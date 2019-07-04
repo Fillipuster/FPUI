@@ -1,18 +1,13 @@
-if (SERVER) then
-	resource.AddFile("resource/fonts/Roboto-Regular.ttf");
-end
-
-local ClientFiles = {
+local files = {
 	"fpui_config.lua",
-	"fpui/base.lua",
+	"fpui/base.lua"
 	"fpui/FPFrame.lua",
-	"fpui/FPButton.lua",
 }
 
-for _,f in pairs(ClientFiles) do
+for _,f in pairs(files) do
 	if (SERVER) then
-		AddCSLuaFile(f);
+		AddCSLuaFile(f)
 	else
-		include(f);
+		include(f)
 	end
 end
