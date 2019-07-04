@@ -9,5 +9,12 @@ concommand.Add("fpui_test", function()
 	frame:Center()
 	frame:MakePopup()
 
-	vgui.Create("DButton", frame):Dock(TOP)
+	local btn = vgui.Create("FPButton", frame)
+	btn:Dock(TOP)
+	btn:SetDisabled(true)
+	-- btn:SetColor(Color(50, 255, 50))
+
+	timer.Simple(1.5, function()
+		btn:SetDisabled(false)
+	end)
 end)
