@@ -1,13 +1,9 @@
 local PANEL = {}
 
-DEFINE_BASECLASS("DFrame")
-
 AccessorFunc(PANEL, "m_allowKeyClose", "AllowKeyClose", FORCE_BOOL)
 AccessorFunc(PANEL, "m_closeKey", "CloseKey", FORCE_NUMBER)
 
 function PANEL:Init()
-	BaseClass.Init(self)
-
 	// Disable all the default buttons and labels
 	for _,child in pairs(self:GetChildren()) do
 		child:SetVisible(false)
@@ -20,7 +16,6 @@ function PANEL:Init()
 end
 
 function PANEL:PerformLayout()
-	BaseClass.PerformLayout(self)
 	self.closeButton:SetPos(self:GetWide() - 20, 5)
 end
 

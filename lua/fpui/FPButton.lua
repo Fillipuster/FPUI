@@ -2,13 +2,9 @@
 -- Color(91, 69, 69)
 local PANEL = {}
 
-DEFINE_BASECLASS("DButton")
-
 AccessorFunc(PANEL, "m_disabledColor", "DisabledColor")
 
 function PANEL:Init()
-	BaseClass.Init(self)
-
 	self:SetFont("Open-Sans24")
 	self:SetText("Button")
 	self:SetTextColor(Color(255, 255, 255))
@@ -29,8 +25,6 @@ function PANEL:GetColor()
 end
 
 function PANEL:SetDisabled(disable)
-	BaseClass.SetDisabled(self, disable)
-
 	self:SetTextColor(disable and Color(200, 200, 200) or Color(255, 255, 255))
 	self.paintColor = disable and self:GetDisabledColor() or self:GetColor()
 end
@@ -40,16 +34,12 @@ function PANEL:Paint(width, height)
 end
 
 function PANEL:OnCursorEntered()
-	BaseClass.OnCursorEntered(self)
-
 	if (not self:GetDisabled()) then
 		self.paintColor = self.hoverColor
 	end
 end
 
 function PANEL:OnCursorExited()
-	BaseClass.OnCursorExited(self)
-
 	if (not self:GetDisabled()) then
 		self.paintColor = self:GetColor()
 	end
