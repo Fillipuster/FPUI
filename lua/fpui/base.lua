@@ -13,6 +13,13 @@ concommand.Add("fpui_test", function()
 	btn:Dock(TOP)
 	btn:SetDisabled(true)
 
+	local cb = vgui.Create("FPCheckBox", frame)
+	cb:Dock(TOP)
+
+	local cbt = vgui.Create("FPCheckBox", frame)
+	cbt:Dock(TOP)
+	cbt:SetTall(50)
+
 	local scrlPnl = vgui.Create("FPScrollPanel", frame)
 	scrlPnl:Dock(FILL)
 

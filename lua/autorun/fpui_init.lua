@@ -3,7 +3,8 @@ local files = {
 	"fpui/base.lua",
 	"fpui/fpframe.lua",
 	"fpui/fpbutton.lua",
-	"fpui/fpscrollpanel.lua"
+	"fpui/fpscrollpanel.lua",
+	"fpui/fpcheckbox.lua"
 }
 
 for _,f in pairs(files) do
