@@ -1,7 +1,3 @@
-function FPUI.StringMargin(str, margin)
-	// TODO
-end
-
 concommand.Add("fpui_test", function()
 	local frame = vgui.Create("FPFrame")
 	frame:SetTitle("Test Window")

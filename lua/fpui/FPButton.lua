@@ -1,5 +1,3 @@
--- Color(114, 137, 218)
--- Color(91, 69, 69)
 local PANEL = {}
 
 AccessorFunc(PANEL, "m_disabledColor", "DisabledColor")
@@ -9,7 +7,7 @@ function PANEL:Init()
 	self:SetText("Button")
 	self:SetTextColor(Color(255, 255, 255))
 
-	self:SetColor(Color(114, 137, 218))
+	self:SetColor(FPUI.config.primary)
 	self:SetDisabledColor(Color(91, 69, 69))
 end
 

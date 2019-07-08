@@ -5,6 +5,9 @@ FPUI.config = FPUI.config or {}
 Fillipuster's User Interface Configuration
 ------------------------------------------------------------]]
 
+// The primary tone color of the UI:
+FPUI.config.primary = Color(114, 137, 218)
+
 // The light shade of the base color of the UI:
 FPUI.config.baseLight = Color(54, 57, 62)
 
