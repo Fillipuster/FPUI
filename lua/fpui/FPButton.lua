@@ -22,9 +22,11 @@ function PANEL:GetColor()
 	return self.color
 end
 
-function PANEL:SetDisabled(disable)
-	self:SetTextColor(disable and Color(200, 200, 200) or Color(255, 255, 255))
-	self.paintColor = disable and self:GetDisabledColor() or self:GetColor()
+function PANEL:SetEnabled(enable)
+	baseclass.Get("DButton").SetEnabled(self, enable)
+
+	self:SetTextColor(enable and Color(255, 255, 255) or Color(200, 200, 200))
+	self.paintColor = enable and self:GetColor() or self:GetDisabledColor()
 end
 
 function PANEL:Paint(width, height)
@@ -32,17 +34,15 @@ function PANEL:Paint(width, height)
 end
 
 function PANEL:OnCursorEntered()
-	if (not self:GetDisabled()) then
+	if (self:IsEnabled()) then
 		self.paintColor = self.hoverColor
 	end
 end
 
 function PANEL:OnCursorExited()
-	if (not self:GetDisabled()) then
+	if (self:IsEnabled()) then
 		self.paintColor = self:GetColor()
 	end
 end
-
-
 
 vgui.Register("FPButton", PANEL, "DButton")

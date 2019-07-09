@@ -2,9 +2,14 @@ local files = {
 	"fpui_config.lua",
 	"fpui/base.lua",
 	"fpui/fpframe.lua",
+	"fpui/fppanel.lua",
+	"fpui/fplabel.lua",
 	"fpui/fpbutton.lua",
+	"fpui/fpcheckbox.lua",
 	"fpui/fpscrollpanel.lua",
-	"fpui/fpcheckbox.lua"
+	"fpui/fpmodelpanel.lua",
+	"fpui/fpimage.lua",
+	"fpui/fpprogress.lua"
 }
 
 for _,f in pairs(files) do
